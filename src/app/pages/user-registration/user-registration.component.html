@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            User Registration using Reactive Forms
+        </div>
+        <div class="card-body">
+            <form [formGroup]="userForm" (ngSubmit)="onSaveUser()">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Name:</span>
+                    <input class="form-control" type="text" id="name" formControlName="name" [ngClass]="{'is-invalid': userForm.get('name')?.invalid && userForm.get('name')?.touched}">
+                    <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="invalid-feedback">Name is required field</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Email:</span>
+                    <input class="form-control" type="text" id="email" formControlName="email" [ngClass]="{'is-invalid': userForm.get('email')?.invalid && userForm.get('email')?.touched}">
+                    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="invalid-feedback">Email is required field</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Phone:</span>
+                    <input class="form-control" type="number" id="phone" formControlName="phone" [ngClass]="{'is-invalid': userForm.get('phone')?.invalid && userForm.get('phone')?.touched}">
+                    <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched" class="invalid-feedback">Phone is required field</div>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Address:</span>
+                    <input class="form-control" type="text" id="address" formControlName="address" [ngClass]="{'is-invalid': userForm.get('address')?.invalid && userForm.get('address')?.touched}">
+                    <div *ngIf="userForm.get('address')?.invalid && userForm.get('address')?.touched" class="invalid-feedback">Address is required field</div>
+                </div>
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <!-- @if (error$ | async) {
+                    <div class="input-group mb-3">Something went wrong!</div>
+                }
+                @else {
+                    <div class="input-group mb-3">{{username$ | async}}</div>
+                } -->
+            </form>
+        </div>
+    </div>
+</div>
