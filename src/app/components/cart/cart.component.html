@@ -1,1 +1,62 @@
-<p>cart works!</p>
+
+@if ((cartItem$ | async)?.length == 0) {
+    <div class="alert alert-warning" role="alert">
+       Your cart is empty
+      </div>
+}
+@else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                @for (item of cartItem$ | async; track $index) {
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{item.image}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <h5 class="card-title">{{item.title}}</h5>
+                            <p class="card-text">{{item.price | currency}}</p>
+                            <div class="card-text">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-3">
+                                        <label class="col-form-label">Quantity</label>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-outline-success form-control" (click)="increment(item.id)">+</button>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="text" class="form-control" value="{{item.quantity}}">
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-outline-warning form-control" (click)="decrement(item.id)">-</button>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <button class="btn btn-outline-danger form-control" (click)="removeItem(item.id)">Remove Item</button>
+                                </div>
+                               
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                }  
+            </div>
+        <div class="col-6">
+            <div>
+                Total Items : {{(cartItem$ | async)?.length}}
+            </div>
+            <div>
+                Total Price : {{cartTotalPrice$ | async | currency}}
+            </div>
+            <div>
+                <button class="btn btn-primary">Check Out</button>
+            </div>
+        </div>
+        </div>
+    </div>
+   
+}

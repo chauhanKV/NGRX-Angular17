@@ -3,7 +3,7 @@
         @for (item of products$ | async; track $index) {
         <div class="col-3">
             <div class="card-group">
-                <app-product-card [product]="item"></app-product-card>
+                <app-product-card [product]="item" (handleAddToCart)="addToCart($event)"></app-product-card>
             </div>
         </div>
         }

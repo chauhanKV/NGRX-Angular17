@@ -8,6 +8,7 @@ import { provideEffects } from '@ngrx/effects';
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { cartReducer } from './store/cart/cart.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideStore(),
-    provideState({ name: 'userState', reducer: userReducer }),
+    provideState({ name: 'user', reducer: userReducer }),
+    provideState({ name: 'cart', reducer: cartReducer }),
     provideEffects(UserEffects),
   ],
 };
