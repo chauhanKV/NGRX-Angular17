@@ -1,5 +1,6 @@
 <div class="container overflow-hidden">
     <div class="row">
+        @if ((products$ | async)!.length > 0) {
         @for (item of products$ | async; track $index) {
         <div class="col-3">
             <div class="card-group">
@@ -7,6 +8,12 @@
             </div>
         </div>
         }
+    }
+    @else {
+        <div>
+            <span class="badge text-bg-secondary">Something went wrong while loading products</span>
+        </div>
+    }
     </div>
 </div>
 

@@ -16,7 +16,6 @@ import { AsyncPipe } from '@angular/common';
 })
 export class HeaderComponent {
   store = inject(Store<AppState>);
-
   productsCount$: Observable<IProduct[]>;
   constructor() {
     this.productsCount$ = this.store.select(selectCartProducts);

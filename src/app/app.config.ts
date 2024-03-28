@@ -9,6 +9,8 @@ import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { cartReducer } from './store/cart/cart.reducer';
+import { productReducer } from './store/product/product.reducer';
+import { ProductEffect } from './store/product/product.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState({ name: 'user', reducer: userReducer }),
     provideState({ name: 'cart', reducer: cartReducer }),
+    provideState({ name: 'product', reducer: productReducer }),
     provideEffects(UserEffects),
+    provideEffects(ProductEffect),
   ],
 };
